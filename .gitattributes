@@ -1,0 +1,6 @@
+# En el archivo .gitattributes
+* -text
+
+# Excluir archivos específicos que deben mantener sus EOL originales
+backend/api/package.json -text
+backend/api/package-lock.json -text
