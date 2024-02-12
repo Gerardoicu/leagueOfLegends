@@ -2,8 +2,8 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import routes from './routes';
-import lolRoutes from './routes/lolRoutes';
+import routes from './routes/MainRouter';
+import lolRoutes from './routes/LolRoutes';
 
 dotenv.config();
 

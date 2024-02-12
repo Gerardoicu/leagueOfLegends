@@ -1,11 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require('express');
-const router = express.Router();
-const lolController_1 = __importDefault(require("../controllers/lolController"));
-router.get('/summoner/:summonerName', lolController_1.default.getSummonerInfo);
-router.get('/champions/:language/:championName?', lolController_1.default.getChampionInfo);
+// src/routes/LolRoutes.ts
+const express_1 = require("express");
+const LolController_1 = require("../controllers/LolController");
+const router = (0, express_1.Router)();
+const lolController = new LolController_1.LolController();
+router.get('/summoner/:summonerName', lolController.getSummonerInfo.bind(lolController));
+router.get('/champions/:language/:championName?', lolController.getChampionInfo.bind(lolController));
 exports.default = router;

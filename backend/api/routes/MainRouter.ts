@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import UserRoutes from './userRoutes';
-import LolRoutes from './lolRoutes';
+import UserRoutes from './UserRoutes';
+import LolRoutes from './LolRoutes';
 
 class MainRouter {
     public router: Router;
