@@ -5,7 +5,6 @@ import LolController from '../controllers/lolController';
 
 router.get('/summoner/:summonerName', LolController.getSummonerInfo);
 
-router.get('/champion/:championName', LolController.getChampionInfo);
+router.get('/champions/:language/:championName?', LolController.getChampionInfo);
 
-router.get('/champions/:language', LolController.getAllChampionsByLanguage);
 export default router;

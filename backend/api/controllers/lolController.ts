@@ -29,20 +29,20 @@ class LolController {
     }
 
     public async getChampionInfo(req: Request, res: Response): Promise<void> {
-        const championName = req.params.championName;
-        const language = 'en_US';
-        const version = '14.3.1';
-        const dataDragonUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/data/${language}/champion/${championName}.json`;
+        const { language, championName } = req.params;
+        const baseUrl = `https://ddragon.leagueoflegends.com/cdn/14.3.1/data/${language}`;
 
         try {
-        } catch (error) {
-            const axiosError = error as { response?: { status: number } };
-            if (axiosError.response && axiosError.response.status === 404) {
-                res.status(404).json({ message: 'Champion not found' });
+            if (championName) {
+                const response = await axios.get(`${baseUrl}/champion/${championName}.json`);
+                res.json(response.data);
             } else {
-                console.error('Error:', error);
-                res.status(500).json({ message: 'Internal Server Error' });
+                const response = await axios.get(`${baseUrl}/champion.json`);
+                res.json(response.data);
             }
+        } catch (error) {
+            console.error('Error al obtener campeones:', error);
+            res.status(500).json({ message: 'Error interno del servidor' });
         }
     }
 
