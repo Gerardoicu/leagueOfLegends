@@ -46,20 +46,6 @@ class LolController {
         }
     }
 
-    public async getAllChampionsByLanguage(req: Request, res: Response): Promise<void> {
-        const language = req.params.language;
-        const dataDragonUrl = `https://ddragon.leagueoflegends.com/cdn/14.3.1/data/${language}/champion.json`;
-
-        try {
-            const response = await axios.get(dataDragonUrl);
-            const champions = response.data.data;
-            res.json(champions);
-        } catch (error) {
-            console.error('Error al obtener campeones:', error);
-            res.status(500).json({ message: 'Error interno del servidor' });
-        }
-    }
-
 }
 
 export default new LolController();
