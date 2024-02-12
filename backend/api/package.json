@@ -7,7 +7,8 @@
     "start": "ts-node server.ts",
     "build": "tsc",
     "serve": "node build/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && node ./build/server.js"
   },
   "author": "Gerardo Carvajal",
   "license": "ISC",
