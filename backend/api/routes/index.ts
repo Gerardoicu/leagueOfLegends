@@ -1,8 +1,19 @@
 import { Router } from 'express';
-import userRoutes from './userRoutes';
+import UserRoutes from './userRoutes';
+import LolRoutes from './lolRoutes';
 
-const router: Router = Router();
+class MainRouter {
+    public router: Router;
 
-router.use('/users', userRoutes);
+    constructor() {
+        this.router = Router();
+        this.initializeRoutes();
+    }
 
-export default router;
+    private initializeRoutes(): void {
+        this.router.use('/users', UserRoutes);
+        this.router.use('/lol', LolRoutes);
+    }
+}
+
+export default new MainRouter().router;

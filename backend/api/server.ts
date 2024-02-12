@@ -1,23 +1,37 @@
-import express, { Express ,Request, Response } from 'express';
+import express, { Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import routes from './routes';
+import lolRoutes from './routes/lolRoutes';
 
 dotenv.config();
 
-const app: Express = express();
-const PORT: string | number = process.env.PORT || 3000;
+class Server {
+    private app: Express;
+    private PORT: string | number;
 
-app.use(cors());
-app.use(helmet());
-app.use(express.json());
-app.use('/api', routes);
+    constructor() {
+        this.app = express();
+        this.PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server ins running in http://localhost:${PORT}`);
-});
+        this.app.use(cors());
+        this.app.use(helmet());
+        this.app.use(express.json());
+        this.app.use('/api', routes);
+        this.app.use('/lol', lolRoutes);
+    }
 
-app.get('/hola-mundo', (req: Request, res: Response) => {
-    res.send('¡Hola Mundo!');
-});
+    public start(): void {
+        this.app.listen(this.PORT, () => {
+            console.log(`Server is running in http://localhost:${this.PORT}`);
+        });
+
+        this.app.get('/hola-mundo', (req, res) => {
+            res.send('¡Hola Mundo!');
+        });
+    }
+}
+
+const server = new Server();
+server.start();
