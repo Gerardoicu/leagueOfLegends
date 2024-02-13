@@ -26,9 +26,19 @@ export class LolController {
     public getChampionInfo = responseHandler(
         async (
             req: Request<ChampionParams>,
-            res: Response<ChampionDataRootDTO | ChampionsDataDTO | null>
+            res: Response<ChampionDataRootDTO| null>
         ) => {
             const data = await this.championService.getChampionInfo(req.params);
+            res.json(data);
+        }
+    );
+
+    public getChampionImg = responseHandler(
+        async (
+            req: Request<ChampionParams>,
+            res: Response<any>
+        ) => {
+            const data = await this.championService.getChampionImg(req.params);
             res.json(data);
         }
     );
