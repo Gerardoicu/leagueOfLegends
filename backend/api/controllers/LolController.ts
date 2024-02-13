@@ -1,9 +1,9 @@
-// src/controllers/LolController.ts
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 
 import dotenv from 'dotenv';
 import {ChampionService} from "../services/ChampionService";
-import {asyncHandler} from "../utils/asyncHandler";
+import {ChampionParams} from "../models/dtoParams/ChampionParams";
+import {responseHandler} from "../utils/functions";
 
 dotenv.config();
 
@@ -18,14 +18,18 @@ export class LolController {
         try {
         } catch (error) {
             console.error('Error:', error);
-            res.status(500).json({ message: 'Internal Server Error' });
+            res.status(500).json({message: 'Internal Server Error'});
         }
     }
 
 
-    public getChampionInfo = asyncHandler(async (req: Request, res: Response) => {
-        const { language, championName } = req.params;
-        const data = await this.championService.getChampionInfo(language, championName);
-        res.json(data);
-    });
+    public getChampionInfo = responseHandler(
+        async (
+            req: Request<ChampionParams>,
+            res: Response<ChampionDataRootDTO | ChampionsDataDTO | null>
+        ) => {
+            const data = await this.championService.getChampionInfo(req.params);
+            res.json(data);
+        }
+    );
 }
