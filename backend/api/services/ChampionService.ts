@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ChampionParams} from "../models/dtoParams/ChampionParams";
+import {ChampionParams, ImageType} from "../models/dtoParams/ChampionParams";
 
 export class ChampionService {
     private baseUrl = 'https://ddragon.leagueoflegends.com/cdn';
@@ -13,23 +13,23 @@ export class ChampionService {
 
             const champs: ChampionsDataDTO = (response.data as ChampionDataRootDTO).data;
             let param: ChampionParams = {
-                imageType: 'splash',
+                imageType: ImageType.splash,
                 championName: '',
                 imgIndex: ''
             };
             Object.keys(champs).forEach(key => {
                 if (champs[key].skins) {
                     champs[key].skins.forEach((skin: ChampionSkin) => {
-                        param.imageType = 'splash';
+                        param.imageType = ImageType.splash;
                         param.championName = key;
                         param.imgIndex = skin.num.toString();
                         skin.splashArt = this.getChampionImg(param);
-                        param.imageType = 'loading';
+                        param.imageType =  ImageType.loading;
                         skin.loading = this.getChampionImg(param);
                     });
-                    param.imageType = 'square';
+                    param.imageType = ImageType.square;
                     champs[key].image.url = this.getChampionImg(param);
-                    param.imageType = 'passive';
+                    param.imageType =  ImageType.passive;
                     param.imgIndex = champs[key].passive.image.full
                     champs[key].passive.image.url = this.getChampionImg(param);
                 }
@@ -45,16 +45,16 @@ export class ChampionService {
         const formattedChampionName = this.getFormattedChampionName(championParams.championName);
         let endpoint;
         switch (championParams.imageType) {
-            case 'loading':
+            case ImageType.loading:
                 endpoint = `/img/champion/loading/${formattedChampionName}_${championParams.imgIndex}.jpg`;
                 break;
-            case 'splash':
+            case ImageType.splash:
                 endpoint = `/img/champion/splash/${formattedChampionName}_${championParams.imgIndex}.jpg`;
                 break;
-            case 'passive':
+            case ImageType.passive:
                 endpoint = `/14.3.1/img/passive/${championParams.imgIndex}`;
                 break;
-            case 'square':
+            case ImageType.square:
                 endpoint = `/14.3.1/img/champion/${formattedChampionName}.png`;
                 break;
             default:
