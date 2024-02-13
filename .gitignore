@@ -88,3 +88,4 @@ Dockerfile
 /terraform/
 *.tfstate
 *.tfstate.*
+/backend/api/build/
