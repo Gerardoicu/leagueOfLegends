@@ -2,9 +2,9 @@
 node_modules/
 
 # Directorios de compilación
-/build/
-/dist/
-/out/
+build/
+dist/
+out/
 
 # Archivos de compilación de TypeScript
 *.js
