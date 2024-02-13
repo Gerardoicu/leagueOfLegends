@@ -18,20 +18,21 @@ export class ChampionService {
                 imgIndex: ''
             };
             Object.keys(champs).forEach(key => {
-                console.log(key);
-                champs[key].skins.forEach((skin: ChampionSkin) => {
-                    param.imageType = 'splash';
-                    param.championName = key;
-                    param.imgIndex = skin.num.toString();
-                    skin.splashArt = this.getChampionImg(param);
-                    param.imageType = 'loading';
-                    skin.loading = this.getChampionImg(param);
-                });
-                param.imageType = 'square';
-                champs[key].image.url = this.getChampionImg(param);
-                param.imageType = 'passive';
-                param.imgIndex =champs[key].passive.image.full
-                champs[key].passive.image.url = this.getChampionImg(param);
+                if (champs[key].skins) {
+                    champs[key].skins.forEach((skin: ChampionSkin) => {
+                        param.imageType = 'splash';
+                        param.championName = key;
+                        param.imgIndex = skin.num.toString();
+                        skin.splashArt = this.getChampionImg(param);
+                        param.imageType = 'loading';
+                        skin.loading = this.getChampionImg(param);
+                    });
+                    param.imageType = 'square';
+                    champs[key].image.url = this.getChampionImg(param);
+                    param.imageType = 'passive';
+                    param.imgIndex = champs[key].passive.image.full
+                    champs[key].passive.image.url = this.getChampionImg(param);
+                }
             });
             return response.data;
         } catch (error) {
