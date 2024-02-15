@@ -7,3 +7,38 @@
   display: inline-block;
   border: 10px solid white;
 }
+
+
+.cuadrado {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+
+/* Cuadrado que entra desde la izquierda */
+.cuadrado-izquierda {
+  top: 50%; /* Centrado verticalmente */
+  left: -100px; /* Fuera de la pantalla a la izquierda */
+  background-color: red;
+  transform: translateY(-50%); /* Alineación vertical */
+}
+
+/* Cuadrado que entra desde arriba */
+.cuadrado-arriba {
+  left: 50%; /* Centrado horizontalmente */
+  top: -100px; /* Fuera de la pantalla arriba */
+  background-color: blue;
+  transform: translateX(-50%); /* Alineación horizontal */
+}
+
+/* Cuadrado que entra desde la derecha */
+.cuadrado-derecha {
+  top: 50%; /* Centrado verticalmente */
+  right: -100px; /* Fuera de la pantalla a la derecha */
+  background-color: green;
+  transform: translateY(-50%); /* Alineación vertical */
+}
+
+.cuadrado-abajo{
+
+}

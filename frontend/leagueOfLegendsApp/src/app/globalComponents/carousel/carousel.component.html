@@ -1,5 +1,15 @@
-<div #carousel class="carousel">
+<!--<div #carousel class="carousel">
   <div *ngFor="let image of images" class="carousel-item">
     <img [src]="image" alt="Carousel Image">
   </div>
+</div>-->
+
+
+<div #test class="contenedor">
+  <div #squareLeft (click)="movingTest(Directions.LEFT)" class="cuadrado cuadrado-izquierda"></div>
+  <div #squareTop (click)="movingTest(Directions.TOP)" class="cuadrado cuadrado-arriba"></div>
+  <div #squareRight (click)="movingTest(Directions.RIGHT)" class="cuadrado cuadrado-derecha"></div>
+  <div #squareBottom (click)="movingTest(Directions.BOTTOM)" class="cuadrado cuadrado-abajo"></div>
 </div>
+
+<button > Testing</button>
