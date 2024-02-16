@@ -6,6 +6,7 @@ import {CommonModule} from "@angular/common";
 type AnimationsMap = {
   [K in Directions]: () => void;
 };
+
 export enum Directions {
   LEFT = "LEFT",
   RIGHT = "RIGHT",
@@ -32,16 +33,17 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   @ViewChild('squareBottom', {static: true}) squareBottom!: ElementRef<HTMLDivElement>;
   private squares: ElementRef[] = [];
   private animationsOuts: AnimationsMap = {
-    [Directions.LEFT]: () => this.animateSquare(this.squares[0]?.nativeElement, {x: -100}, 5),
-    [Directions.TOP]: () => this.animateSquare(this.squares[1]?.nativeElement, {y: -100}, 5),
-    [Directions.RIGHT]: () => this.animateSquare(this.squares[2]?.nativeElement, {x: 1000},5),
-    [Directions.BOTTOM]: () => this.animateSquare(this.squares[3]?.nativeElement, {y: 1000}, 5),
+    [Directions.LEFT]: () => this.animateSquare(this.squares[0]?.nativeElement, {x: -800}, 1),
+    [Directions.TOP]: () => this.animateSquare(this.squares[1]?.nativeElement, {y: -510}, 1),
+    [Directions.RIGHT]: () => this.animateSquare(this.squares[2]?.nativeElement, {x: 800}, 1),
+    [Directions.BOTTOM]: () => this.animateSquare(this.squares[3]?.nativeElement, {y: 700}, 1),
   };
   Directions = Directions;
 
   ngAfterViewInit() {
-    this.squares = [this.squareLeft, this.squareTop, this.squareRight, this.squareBottom];
+
   }
+
   images: string[] = [
     'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_39.jpg',
     'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_38.jpg',
@@ -49,17 +51,31 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   ];
 
 
-
   ngOnInit(): void {
     // this.setupCarousel();
-    this.animateSquare(this.squares[0]?.nativeElement, {x: 0}, 1)
+    this.squares = [this.squareLeft, this.squareTop, this.squareRight, this.squareBottom];
+    this.initialize();
+  }
+
+  public initialize(): void {
+    this.animateSquare(this.squares[0]?.nativeElement,
+      {ease: "elastic.out(1, 0.1)", x: window.innerWidth / 2,}, 3);
+    this.animateSquare(this.squares[1]?.nativeElement,
+      {ease: "elastic.out(1, 0.1)", y: window.innerHeight / 2}, 3);
+    this.animateSquare(this.squares[2]?.nativeElement,
+      {ease: "elastic.out(1, 0.1)", x: -window.innerWidth / 2}, 3)
+    this.animateSquare(this.squares[3]?.nativeElement,
+      {
+        ease: "elastic.out(1, 0.1)",
+        y: (-window.innerHeight + 200) / 2
+      }, 3)
 
   }
 
   setupCarousel(): void {
     gsap.to(this.carousel.nativeElement, {
       xPercent: 50 * (this.images.length - 1),
-      ease: Power2.easeInOut,
+      ease: "elastic.out",
       repeat: -1,
       duration: 1,
     });
