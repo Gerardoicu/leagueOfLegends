@@ -1,11 +1,6 @@
 import {Request, Response} from 'express';
-
-import dotenv from 'dotenv';
 import {ChampionService} from "../services/ChampionService";
 import {ChampionParams} from "../models/dtoParams/ChampionParams";
-import {responseHandler} from "../utils/functions";
-
-dotenv.config();
 
 export class LolController {
     private championService: ChampionService;
@@ -23,17 +18,16 @@ export class LolController {
     }
 
 
-    public getChampionInfo = responseHandler(
+    public getChampionInfo =
         async (
             req: Request<ChampionParams>,
-            res: Response<ChampionDataRootDTO| null>
+            res: Response<ChampionDataRootDTO | null>
         ) => {
             const data = await this.championService.getChampionInfo(req.params);
             res.json(data);
         }
-    );
 
-    public getChampionImg = responseHandler(
+    public getChampionImg =
         async (
             req: Request<ChampionParams>,
             res: Response<any>
@@ -41,5 +35,4 @@ export class LolController {
             const data = await this.championService.getChampionImg(req.params);
             res.json(data);
         }
-    );
 }

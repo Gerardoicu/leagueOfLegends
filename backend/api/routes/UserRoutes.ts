@@ -1,8 +1,18 @@
 import { Router } from 'express';
-import * as userController from '../controllers/UserController';
+import { UserController } from '../controllers/UserController';
 
-const router: Router = Router();
+class UserRoutes {
+    public router: Router;
 
-router.get('/', userController.getUsers);
+    constructor() {
+        this.router = Router();
+        this.setRoutes();
+    }
 
-export default router;
+    private setRoutes() {
+  //      this.router.get('/', AuthMiddleware.checkToken, UserController.getAllUsers);
+        // Añade aquí más rutas según sea necesario
+    }
+}
+
+export default new UserRoutes().router;
