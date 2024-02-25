@@ -6,7 +6,9 @@ import {ResponseHandlerMiddleware} from "../ResponseHandlerMiddleware";
 const router = Router();
 const lolController = new LolController();
 router.get('/summoner/:summonerName', AuthMiddleware.verifyToken, ResponseHandlerMiddleware.responseHandler(lolController.getSummonerInfo.bind(lolController)));
-router.get('/champions/:language/:championName?', AuthMiddleware.verifyToken, ResponseHandlerMiddleware.responseHandler(lolController.getChampionInfo.bind(lolController)));
+router.get('/champions/:language/:championName', AuthMiddleware.verifyToken, ResponseHandlerMiddleware.responseHandler(lolController.getChampionInfo.bind(lolController)));
 router.get('/champions/img/:imageType/:championName/:imgIndex?', AuthMiddleware.verifyToken, ResponseHandlerMiddleware.responseHandler(lolController.getChampionImg.bind(lolController)));
+router.get('/champions?', AuthMiddleware.verifyToken, ResponseHandlerMiddleware.responseHandler(lolController.getChampionsNames.bind(lolController)));
+router.get('/champions/:language', AuthMiddleware.verifyToken, ResponseHandlerMiddleware.responseHandler(lolController.getAllChampionInfo.bind(lolController)));
 
 export default router;

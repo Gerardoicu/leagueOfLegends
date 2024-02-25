@@ -16,17 +16,32 @@ export class LolController {
             res.status(500).json({message: 'Internal Server Error'});
         }
     }
-
+        public getAllChampionInfo =
+        async (
+            req: Request<ChampionParams>,
+            res: Response<ChampionsDataDTO[] | null>
+        ) => {
+            const data = await this.championService.getAllChampionInfo(req.params);
+            res.json(data);
+        }
 
     public getChampionInfo =
         async (
             req: Request<ChampionParams>,
-            res: Response<ChampionDataRootDTO | null>
+            res: Response<ChampionsDataDTO | null>
         ) => {
             const data = await this.championService.getChampionInfo(req.params);
             res.json(data);
         }
 
+    public getChampionsNames =
+        async (
+            req: Request<ChampionParams>,
+            res: Response<string[] | null>
+        ) => {
+            const data = await this.championService.getChampionNames(req.params);
+            res.json(data);
+        }
     public getChampionImg =
         async (
             req: Request<ChampionParams>,
