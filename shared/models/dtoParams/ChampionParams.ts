@@ -1,4 +1,4 @@
-import {LanguageCodeEnum} from "../dtos/LanguageCodeEnum";
+import {LanguageCodeEnum} from "../../LanguageCodeEnum";
 
 export enum ImageType {
     splash,

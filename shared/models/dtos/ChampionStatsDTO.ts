@@ -1,4 +1,4 @@
-interface ChampionStatsDTO {
+export interface ChampionStatsDTO {
     hp: number;
     hpperlevel: number;
     mp: number;

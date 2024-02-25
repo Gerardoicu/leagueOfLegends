@@ -1,6 +1,10 @@
 import axios from 'axios';
-import {ChampionParams, ImageType} from "../models/dtoParams/ChampionParams";
-import {LanguageCodeEnum} from "../models/dtos/LanguageCodeEnum";
+
+import {LanguageCodeEnum} from "../../shared/LanguageCodeEnum";
+import {ChampionParams, ImageType} from "../../shared/models/dtoParams/ChampionParams";
+import {ChampionSkin} from "../../shared/models/dtos/ChampionInfoDTO";
+import {ChampionsDataDTO} from "../../shared/models/dtos/ChampionsDataDTO";
+import {ChampionDataRootDTO} from "../../shared/models/dtos/ChampionDataRootDTO";
 
 export class ChampionService {
     private baseUrl = 'https://ddragon.leagueoflegends.com/cdn';

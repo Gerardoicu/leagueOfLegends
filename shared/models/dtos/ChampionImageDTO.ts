@@ -1,4 +1,4 @@
-interface ChampionImageDTO {
+export interface ChampionImageDTO {
     full: string;
     sprite: string;
     group: string;

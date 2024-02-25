@@ -1,6 +1,8 @@
 import {Request, Response} from 'express';
 import {ChampionService} from "../services/ChampionService";
-import {ChampionParams} from "../models/dtoParams/ChampionParams";
+import {ChampionParams} from "../../shared/models/dtoParams/ChampionParams";
+import {ChampionsDataDTO} from "../../shared/models/dtos/ChampionsDataDTO";
+
 
 export class LolController {
     private championService: ChampionService;

@@ -1,4 +1,4 @@
-interface ChampionInfoDTO {
+export interface ChampionInfoDTO {
     id: string;
     key: string;
     name: string;
@@ -48,7 +48,7 @@ interface ChampionInfoDTO {
     recommended: any[];
 }
 
-interface ChampionImage {
+export interface ChampionImage {
     url?: string;
     full: string;
     sprite: string;
@@ -59,7 +59,7 @@ interface ChampionImage {
     h: number;
 }
 
-interface ChampionSkin {
+export interface ChampionSkin {
     id: string;
     num: number;
     name: string;
@@ -69,7 +69,7 @@ interface ChampionSkin {
     loading?: string;
 }
 
-interface ChampionSpell {
+export interface ChampionSpell {
     id: string;
     name: string;
     description: string;
