@@ -4,6 +4,7 @@
   "description": "api para conectarse a la api de league of legends",
   "main": "server.js",
   "scripts": {
+    "debug": "tsc && node --inspect-brk build/server.js",
     "start": "node build/server.js",
     "build": "tsc",
     "serve": "node build/server.js",

@@ -39,7 +39,7 @@ export class LolController {
             req: Request<ChampionParams>,
             res: Response<string[] | null>
         ) => {
-            const data = await this.championService.getChampionNames(req.params);
+            const data = await this.championService.getChampionNames();
             res.json(data);
         }
     public getChampionImg =
