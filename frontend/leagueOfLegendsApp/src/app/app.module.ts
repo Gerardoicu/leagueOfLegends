@@ -8,13 +8,26 @@ import {MatSliderModule} from '@angular/material/slider';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {JwtInterceptor} from "./auth/auth.interceptor";
+import {AppRoutingModule} from './app-routing.module';
+import {LoginComponent} from "./login/login.component";
+import {GlobalComponentsModule} from "./global-components.module";
+import {HomeComponent} from "./home/home.component";
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent
+  ],
+  exports: [],
   imports: [
+    GlobalComponentsModule,
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),
@@ -27,9 +40,12 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

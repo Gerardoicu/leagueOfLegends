@@ -1,5 +1,6 @@
 import {Request, Response, NextFunction} from 'express';
 import jwt, {JwtPayload} from 'jsonwebtoken';
+import { StatusCodes } from 'http-status-codes';
 export class AuthMiddleware {
 
 
@@ -7,9 +8,10 @@ export class AuthMiddleware {
         console.log("Verificando token...");
         const jwtSecret: string = process.env.JWT_SECRET || '';
         const token = req.headers.authorization?.split(' ')[1];
-
+        console.log('token ', token)
         if (!token) {
-            res.status(403).send({ message: "A token is required for authentication" });
+            res.status(StatusCodes.UNAUTHORIZED).send({ message: "A token is required for authentication" });
+
             return;
         }
 
@@ -21,7 +23,7 @@ export class AuthMiddleware {
             next();
         } catch (err) {
             console.log("Error al verificar token:", err);
-            res.status(401).send({ message: "Invalid Token" });
+            res.status(StatusCodes.UNAUTHORIZED).send({ message: "Invalid Token" });
             return;
         }
     };

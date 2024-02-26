@@ -19,7 +19,7 @@ class Server {
         this.app.use(express.json());
         this.app.use('/api', routes);
         this.app.use('/lol', lolRoutes);
-        this.app.post('/login', UserController.login);
+        this.app.post('/auth/login', UserController.login);
 
     }
 

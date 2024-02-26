@@ -15,7 +15,7 @@ class MainRouter {
     }
 
     private setupOpenRoutes(): void {
-        this.router.post('/login', UserController.login);
+        this.router.post('/auth/login', UserController.login);
     }
 
     private applyGlobalMiddleware(): void {
