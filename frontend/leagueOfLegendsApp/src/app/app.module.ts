@@ -14,6 +14,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from "./login/login.component";
 import {GlobalComponentsModule} from "./global-components.module";
 import {HomeComponent} from "./home/home.component";
+import {CommonModule} from "@angular/common";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,6 +29,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [],
   imports: [
     GlobalComponentsModule,
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),

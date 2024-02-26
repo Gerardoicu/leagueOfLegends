@@ -11,24 +11,13 @@ import { ChampionSkin } from "@shared/models/dtos/ChampionInfoDTO";
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
-  champions: ChampionsDataDTO[] = [];
   currentSkin: ChampionSkin[] = [];
   currentChampionIndex: number = 0;
   currentSkinIndex: number = 0;
 
-  constructor(private lolService: LeagueOfLegendsService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.lolService.getChampions(LanguageCodeEnum.EN_US).subscribe({
-      next: (data: ChampionsDataDTO[]) => {
-        this.champions = data;
-        console.log('test')
-      },
-      error: (error) => {
-        console.log('error', error);
-      },
-      complete: () => {}
-    });
   }
 
   changeSkin(offset: number): void {

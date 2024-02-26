@@ -1,0 +1,25 @@
+.icon-button {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  margin: 0 10px;
+}
+
+.icon-button mat-icon {
+  font-size: 100px;
+  height: 1em;
+  width: 1em;
+}
+
+.icon-button:hover, .icon-button:focus {
+  transform: scale(1.1);
+}
+.icon-button:active, .icon-button:active {
+  transform: scale(1.1);
+  color: #555;
+}
+.icon-button.atropos-active {
+  transition: none;
+}
