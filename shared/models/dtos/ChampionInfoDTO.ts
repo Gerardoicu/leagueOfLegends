@@ -60,7 +60,7 @@ export interface ChampionImage {
 }
 
 export interface ChampionSkin {
-    id: string;
+     id: string;
     num: number;
     name: string;
     chromas: boolean;

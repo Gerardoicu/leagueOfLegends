@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {LanguageCodeEnum} from "@shared/LanguageCodeEnum";
 import {ChampionsDataDTO} from "@shared/models/dtos/ChampionsDataDTO";
 import {LeagueOfLegendsService} from "../league-of-legends.service";
+import {ChampionInfoDTO, ChampionSkin} from "@shared/models/dtos/ChampionInfoDTO";
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,9 @@ import {LeagueOfLegendsService} from "../league-of-legends.service";
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  index = 0;
+
   champions: ChampionsDataDTO[] = [];
+  public filtro = "";
 
   constructor(private lolService: LeagueOfLegendsService) {
   }
@@ -20,7 +22,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.lolService.getChampions(LanguageCodeEnum.EN_US).subscribe({
       next: (data: ChampionsDataDTO[]) => {
         this.champions = data;
-        console.log('champs', this.champions);
+        console.log('champs', this.champions[this.lolService.getIndex()][0]);
+
       },
       error: (error) => {
         console.log('error', error);
@@ -31,29 +34,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public moveRight() {
-    if (this.index === this.champions.length-1) {
-      this.index = 0;
+    if (this.lolService.getIndex() === this.champions.length - 1) {
+      this.lolService.resetIndex();
       return;
     }
-
-    this.index = this.index +1;
+    this.lolService.changeIndex(this.lolService.getIndex() + 1);
   }
 
   public moveLeft() {
-    if (this.index === 0) {
-      this.index = this.champions.length - 1;
+    if (this.lolService.getIndex() === 0) {
+      this.lolService.changeIndex(this.champions.length - 1);
       return;
     }
-    this.index = this.index - 1;
+    this.lolService.changeIndex(this.lolService.getIndex() - 1);
   }
 
-  getChampName(champ: ChampionsDataDTO) {
-    return Object.keys(champ)[0];
+  getChampName() {
+    return Object.keys(this.champions[this.lolService.getIndex()])[0];
   }
 
-  getChampInfo(champ: ChampionsDataDTO): string {
-    let key = this.getChampName(champ);
-    return JSON.stringify(champ[key]);
+
+  getChampInfo(): string {
+    return JSON.stringify(this.champions[this.lolService.getIndex()]);
   }
 
   ngAfterViewInit(): void {
@@ -61,4 +63,39 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
+  getSkins() {
+    return Object.values(this.champions[this.lolService.getIndex()])[0].skins;
+  }
+
+  getChampLore() {
+    return Object.values(this.champions[this.lolService.getIndex()])[0].lore;
+  }
+
+  getChampSkins(): ChampionSkin[] {
+    return Object.values(this.champions[this.lolService.getIndex()])[0].skins;
+  }
+
+  public filterByChampName($event: KeyboardEvent) {
+    console.log('event ', $event)
+  }
+
+  filterChampions() {
+    if (!this.filtro) {
+      return this.champions;
+    }
+    const filtroLowerCase = this.filtro.toLowerCase();
+    return this.champions.filter(championObj => {
+      const champName = Object.keys(championObj)[0].toLowerCase();
+      return champName.includes(filtroLowerCase);
+    });
+  }
+
+  showFilterName(item: any) {
+    return Object.keys(item)[0];
+  }
+
+  selectChampion(i: number) {
+    this.lolService.changeIndex(i);
+    console.log('index ', i)
+  }
 }

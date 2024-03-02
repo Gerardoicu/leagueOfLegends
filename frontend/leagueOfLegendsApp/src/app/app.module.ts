@@ -15,6 +15,8 @@ import {LoginComponent} from "./login/login.component";
 import {GlobalComponentsModule} from "./global-components.module";
 import {HomeComponent} from "./home/home.component";
 import {CommonModule} from "@angular/common";
+import {CarouselComponent} from "./globalComponents/carousel/carousel.component";
+import {FormsModule} from "@angular/forms";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,6 +30,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [],
   imports: [
+    FormsModule,
     GlobalComponentsModule,
     CommonModule,
     BrowserModule,
@@ -43,7 +46,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    CarouselComponent
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

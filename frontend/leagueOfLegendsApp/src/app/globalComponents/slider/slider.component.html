@@ -1,6 +1,14 @@
-<!--<div *ngIf="currentSkin">
-  <img [src]="currentSkin.splashArt" alt="Champion Splash Art">
-  <button (click)="changeSkin(-1)" [disabled]="currentSkinIndex === 0">Anterior</button>
-  <button (click)="changeSkin(1)" [disabled]="currentSkinIndex === champions[currentChampionIndex].skins.length - 1">Siguiente</button>
+<div class="slider-container">
+  <div class="img-size">
+    <img [src]="skins[index].splashArt">
+  </div>
+  <div>{{skins[index].name}}</div>
+  <div class="buttons-container">
+    <div atropos atropos-offset="5" (click)="moveLeft()" class="icon-button">
+      <mat-icon>chevron_left</mat-icon>
+    </div>
+    <div atropos atropos-offset="5" (click)="moveRight()" class="icon-button">
+      <mat-icon>chevron_right</mat-icon>
+    </div>
+  </div>
 </div>
--->

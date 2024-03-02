@@ -1,3 +1,11 @@
+.home-container{
+  align-items: center;
+  text-align: center;
+}
+
+.button-space{
+  width: 100px;
+}
 .icon-button {
   cursor: pointer;
   display: inline-flex;
@@ -22,4 +30,33 @@
 }
 .icon-button.atropos-active {
   transition: none;
+}
+
+.champ-lore{
+  text-align: justify;
+}
+
+.buttons-container{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.find-champ {
+  /* Ajusta estos estilos según necesites */
+  max-height: 200px; /* Altura máxima de la lista */
+  overflow-y: auto; /* Permite desplazarse verticalmente si el contenido excede la altura máxima */
+  border: 1px solid #ccc; /* Opcional: agrega un borde alrededor de la lista */
+  margin-bottom: 20px; /* Espacio debajo de la lista para empujar el contenido hacia abajo */
+  padding: 10px; /* Agrega algo de espacio dentro del contenedor de la lista */
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; /* Remueve los marcadores de lista */
+}
+
+li {
+  padding: 5px 0; /* Agrega algo de espacio vertical entre elementos de la lista */
+  border-bottom: 1px solid #eee; /* Opcional: agrega una línea entre elementos */
 }

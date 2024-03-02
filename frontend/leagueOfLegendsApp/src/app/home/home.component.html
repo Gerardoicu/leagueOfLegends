@@ -1,21 +1,24 @@
-<app-slider></app-slider>
-
-<div *ngIf="champions.length > 0">
-  <div>
-    {{ getChampName(champions[index])}}
-    {{getChampInfo(champions[index])}}
-    {{index}}
+<div class="home-container">
+  <app-slider *ngIf="champions.length>0" [skins]=getSkins()></app-slider>
+  <div class="buttons-container">
+    <div atropos atropos-offset="5" (click)="moveLeft()" class="icon-button">
+      <mat-icon>chevron_left</mat-icon>
+    </div>
+    <div class="button-space"></div>
+    <div atropos atropos-offset="5" (click)="moveRight()" class="icon-button">
+      <mat-icon>chevron_right</mat-icon>
+    </div>
+  </div>
+  <div class="find-champ"><input [(ngModel)]="filtro" type="text"/>
+    <ul>
+      <li *ngFor="let championObj of filterChampions(); let i = index"
+          (click)="selectChampion(i)"
+          (keyup.enter)="selectChampion(i)"
+          tabindex="0"> <!-- Hace que el elemento sea enfocable -->
+        {{ showFilterName(championObj) }}
+      </li>
+    </ul>
   </div>
 
-
-  <div atropos atropos-offset="5" (click)="moveLeft()" class="icon-button">
-    <mat-icon>chevron_left</mat-icon>
-  </div>
-
-  <div atropos atropos-offset="5" (click)="moveRight()" class="icon-button">
-    <mat-icon>chevron_right</mat-icon>
-  </div>
+  <div class="champ-lore">{{getChampLore()}}</div>
 </div>
-
-
-
