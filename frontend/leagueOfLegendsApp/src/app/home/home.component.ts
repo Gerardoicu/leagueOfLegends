@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {LanguageCodeEnum} from "@shared/LanguageCodeEnum";
 import {ChampionsDataDTO} from "@shared/models/dtos/ChampionsDataDTO";
 import {LeagueOfLegendsService} from "../league-of-legends.service";
-import {ChampionInfoDTO, ChampionSkin} from "@shared/models/dtos/ChampionInfoDTO";
+import {ChampionSkin} from "@shared/models/dtos/ChampionInfoDTO";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   champions: ChampionsDataDTO[] = [];
+
   public filtro = "";
 
   constructor(private lolService: LeagueOfLegendsService) {
@@ -22,8 +23,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.lolService.getChampions(LanguageCodeEnum.EN_US).subscribe({
       next: (data: ChampionsDataDTO[]) => {
         this.champions = data;
-        console.log('champs', this.champions[this.lolService.getIndex()][0]);
-
       },
       error: (error) => {
         console.log('error', error);
@@ -94,8 +93,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return Object.keys(item)[0];
   }
 
-  selectChampion(i: number) {
-    this.lolService.changeIndex(i);
-    console.log('index ', i)
+  selectChampion(i: ChampionsDataDTO) {
+    const index = this.champions.findIndex(champ =>
+      Object.keys(champ)[0] === Object.keys(i)[0]);
+    this.lolService.changeIndex(index);
+    this.filtro = Object.keys(i)[0];
   }
 }

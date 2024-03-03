@@ -9,16 +9,20 @@
       <mat-icon>chevron_right</mat-icon>
     </div>
   </div>
-  <div class="find-champ"><input [(ngModel)]="filtro" type="text"/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre del campeón</mat-label>
+  <input matInput  [(ngModel)]="filtro"   placeholder="Nombre del campeón" type="text">
+  </mat-form-field>
+  <div class="find-champ">
     <ul>
       <li *ngFor="let championObj of filterChampions(); let i = index"
-          (click)="selectChampion(i)"
-          (keyup.enter)="selectChampion(i)"
+          (click)="selectChampion(championObj)"
+          (keyup.enter)="selectChampion(championObj)"
           tabindex="0"> <!-- Hace que el elemento sea enfocable -->
         {{ showFilterName(championObj) }}
       </li>
     </ul>
   </div>
 
-  <div class="champ-lore">{{getChampLore()}}</div>
+  <div *ngIf="champions.length>0" class="champ-lore">{{getChampLore()}}</div>
 </div>

@@ -17,6 +17,8 @@ import {HomeComponent} from "./home/home.component";
 import {CommonModule} from "@angular/common";
 import {CarouselComponent} from "./globalComponents/carousel/carousel.component";
 import {FormsModule} from "@angular/forms";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,6 +33,8 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [],
   imports: [
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     GlobalComponentsModule,
     CommonModule,
     BrowserModule,
@@ -47,7 +51,8 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     AppRoutingModule,
-    CarouselComponent
+    CarouselComponent,
+    MatFormField
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

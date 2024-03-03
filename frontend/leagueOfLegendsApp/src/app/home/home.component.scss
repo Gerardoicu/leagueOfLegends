@@ -42,12 +42,12 @@
   justify-content: center;
 }
 .find-champ {
-  /* Ajusta estos estilos según necesites */
-  max-height: 200px; /* Altura máxima de la lista */
-  overflow-y: auto; /* Permite desplazarse verticalmente si el contenido excede la altura máxima */
-  border: 1px solid #ccc; /* Opcional: agrega un borde alrededor de la lista */
-  margin-bottom: 20px; /* Espacio debajo de la lista para empujar el contenido hacia abajo */
-  padding: 10px; /* Agrega algo de espacio dentro del contenedor de la lista */
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  height: 200px;
 }
 
 ul {
