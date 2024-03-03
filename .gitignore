@@ -1,2 +1,90 @@
+# Dependencias
 node_modules/
+
+# Directorios de compilación
+build/
+dist/
+out/
+
+# Archivos de compilación de TypeScript
+*.js
+*.js.map
+# Excluir archivos JS específicos que necesiten ser versionados
+#!file-to-be-included.js
+
+# Archivos de entorno
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de depuración
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Directorio de caché de npm
+.npm
+
+# Archivos de editor / IDE
+/.vscode/
+/.idea/
+*.swp
+*.swo
+*~
+
+# Sistema de archivos
+.DS_Store
+Thumbs.db
+
+# Carpetas de cobertura
+/coverage/
+/.nyc_output/
+
+# Archivos de registro
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.key
+
+# Otros archivos y directorios
+/pids/
+/logs/
+/results/
+
+# Directorios generados por herramientas
+/.pnp
+.pnp.js
+/.yarn
+
+# Archivos de configuración de herramientas de CI/CD
+/.travis.yml
+/.github/
+/gitlab-ci.yml
+
+# Archivos y carpetas generados por herramientas de pruebas
+/coverage
+/.nyc_output
+/cypress/videos/
+/cypress/screenshots/
+
+# Archivos de paquetes
+*.tgz
+/package-lock.json
+/yarn.lock
+
+# Archivos generados por el compilador de Babel
+/.babelrc
+
+# Archivos de configuración de Docker
+Dockerfile
+.dockerignore
+/docker-compose*.yml
+
+# Archivos de configuración de infraestructura como código
+/terraform/
+*.tfstate
+*.tfstate.*

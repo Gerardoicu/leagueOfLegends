@@ -1,0 +1,62 @@
+.home-container{
+  align-items: center;
+  text-align: center;
+}
+
+.button-space{
+  width: 100px;
+}
+.icon-button {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  margin: 0 10px;
+}
+
+.icon-button mat-icon {
+  font-size: 100px;
+  height: 1em;
+  width: 1em;
+}
+
+.icon-button:hover, .icon-button:focus {
+  transform: scale(1.1);
+}
+.icon-button:active, .icon-button:active {
+  transform: scale(1.1);
+  color: #555;
+}
+.icon-button.atropos-active {
+  transition: none;
+}
+
+.champ-lore{
+  text-align: justify;
+}
+
+.buttons-container{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.find-champ {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  height: 200px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; /* Remueve los marcadores de lista */
+}
+
+li {
+  padding: 5px 0; /* Agrega algo de espacio vertical entre elementos de la lista */
+  border-bottom: 1px solid #eee; /* Opcional: agrega una línea entre elementos */
+}

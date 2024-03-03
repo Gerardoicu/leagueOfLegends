@@ -1,0 +1,28 @@
+<div class="home-container">
+  <app-slider *ngIf="champions.length>0" [skins]=getSkins()></app-slider>
+  <div class="buttons-container">
+    <div atropos atropos-offset="5" (click)="moveLeft()" class="icon-button">
+      <mat-icon>chevron_left</mat-icon>
+    </div>
+    <div class="button-space"></div>
+    <div atropos atropos-offset="5" (click)="moveRight()" class="icon-button">
+      <mat-icon>chevron_right</mat-icon>
+    </div>
+  </div>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre del campeón</mat-label>
+  <input matInput  [(ngModel)]="filtro"   placeholder="Nombre del campeón" type="text">
+  </mat-form-field>
+  <div class="find-champ">
+    <ul>
+      <li *ngFor="let championObj of filterChampions(); let i = index"
+          (click)="selectChampion(championObj)"
+          (keyup.enter)="selectChampion(championObj)"
+          tabindex="0"> <!-- Hace que el elemento sea enfocable -->
+        {{ showFilterName(championObj) }}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="champions.length>0" class="champ-lore">{{getChampLore()}}</div>
+</div>
