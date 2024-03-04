@@ -1,7 +1,11 @@
 <div class="slider-container">
-  <div class="img-size">
-    <img [src]="skins[index].splashArt">
+  <div class="carousel-cell" *ngFor="let skin of skinsVisible; let i = index"
+       [ngStyle]="i !== 0 ? {'transform': 'rotateY(' + (rotationAngle * i) + 'deg) translateZ(600px)'} : {}">
+    <div [ngClass]="i === 0 ? 'img-focus' : 'img-size'"><img src="{{skin.splashArt}}" alt="Imagen {{i + 1}}"></div>
   </div>
+</div>
+
+<div class="panel-buttons">
   <div>{{skins[index].name}}</div>
   <div class="buttons-container">
     <div atropos atropos-offset="5" (click)="moveLeft()" class="icon-button">
@@ -11,4 +15,5 @@
       <mat-icon>chevron_right</mat-icon>
     </div>
   </div>
+
 </div>

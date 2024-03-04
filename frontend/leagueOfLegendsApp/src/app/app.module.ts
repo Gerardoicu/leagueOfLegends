@@ -32,6 +32,13 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   exports: [],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -43,13 +50,6 @@ export function createTranslateLoader(http: HttpClient) {
     MatIconModule,
     MatSliderModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
-    }),
     AppRoutingModule,
     CarouselComponent,
     MatFormField
